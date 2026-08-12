@@ -1,0 +1,35 @@
+import type { NoteConfig } from '../types/piano';
+
+export const DEFAULT_NOTE_CONFIGS: NoteConfig[] = [
+  { baseNote: 'C', baseOctave: 4, isBlack: false, keyBind: 'a', midi: 60, whiteIndex: 0 },
+  { baseNote: 'C#', baseOctave: 4, isBlack: true, keyBind: 'w', midi: 61, afterWhiteIndex: 0 },
+  { baseNote: 'D', baseOctave: 4, isBlack: false, keyBind: 's', midi: 62, whiteIndex: 1 },
+  { baseNote: 'D#', baseOctave: 4, isBlack: true, keyBind: 'e', midi: 63, afterWhiteIndex: 1 },
+  { baseNote: 'E', baseOctave: 4, isBlack: false, keyBind: 'd', midi: 64, whiteIndex: 2 },
+  { baseNote: 'F', baseOctave: 4, isBlack: false, keyBind: 'f', midi: 65, whiteIndex: 3 },
+  { baseNote: 'F#', baseOctave: 4, isBlack: true, keyBind: 't', midi: 66, afterWhiteIndex: 3 },
+  { baseNote: 'G', baseOctave: 4, isBlack: false, keyBind: 'g', midi: 67, whiteIndex: 4 },
+  { baseNote: 'G#', baseOctave: 4, isBlack: true, keyBind: 'y', midi: 68, afterWhiteIndex: 4 },
+  { baseNote: 'A', baseOctave: 4, isBlack: false, keyBind: 'h', midi: 69, whiteIndex: 5 },
+  { baseNote: 'A#', baseOctave: 4, isBlack: true, keyBind: 'u', midi: 70, afterWhiteIndex: 5 },
+  { baseNote: 'B', baseOctave: 4, isBlack: false, keyBind: 'j', midi: 71, whiteIndex: 6 },
+
+  { baseNote: 'C', baseOctave: 5, isBlack: false, keyBind: 'k', midi: 72, whiteIndex: 7 },
+  { baseNote: 'C#', baseOctave: 5, isBlack: true, keyBind: 'o', midi: 73, afterWhiteIndex: 7 },
+  { baseNote: 'D', baseOctave: 5, isBlack: false, keyBind: 'l', midi: 74, whiteIndex: 8 },
+  { baseNote: 'D#', baseOctave: 5, isBlack: true, keyBind: 'p', midi: 75, afterWhiteIndex: 8 },
+  { baseNote: 'E', baseOctave: 5, isBlack: false, keyBind: ';', midi: 76, whiteIndex: 9 },
+  { baseNote: 'F', baseOctave: 5, isBlack: false, keyBind: '\'', midi: 77, whiteIndex: 10 },
+  { baseNote: 'F#', baseOctave: 5, isBlack: true, keyBind: '[', midi: 78, afterWhiteIndex: 10 },
+  { baseNote: 'G', baseOctave: 5, isBlack: false, keyBind: 'z', midi: 79, whiteIndex: 11 },
+  { baseNote: 'G#', baseOctave: 5, isBlack: true, keyBind: ']', midi: 80, afterWhiteIndex: 11 },
+  { baseNote: 'A', baseOctave: 5, isBlack: false, keyBind: 'x', midi: 81, whiteIndex: 12 },
+  { baseNote: 'A#', baseOctave: 5, isBlack: true, keyBind: '\\', midi: 82, afterWhiteIndex: 12 },
+  { baseNote: 'B', baseOctave: 5, isBlack: false, keyBind: 'c', midi: 83, whiteIndex: 13 },
+
+  { baseNote: 'C', baseOctave: 6, isBlack: false, keyBind: 'v', midi: 84, whiteIndex: 14 },
+  { baseNote: 'C#', baseOctave: 6, isBlack: true, keyBind: 'b', midi: 85, afterWhiteIndex: 14 },
+  { baseNote: 'D', baseOctave: 6, isBlack: false, keyBind: 'n', midi: 86, whiteIndex: 15 },
+  { baseNote: 'D#', baseOctave: 6, isBlack: true, keyBind: 'm', midi: 87, afterWhiteIndex: 15 },
+  { baseNote: 'E', baseOctave: 6, isBlack: false, keyBind: ',', midi: 88, whiteIndex: 16 },
+];

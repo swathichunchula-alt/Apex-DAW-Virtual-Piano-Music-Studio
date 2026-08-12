@@ -1,0 +1,969 @@
+/* ==========================================================================
+   APEX DAW PIANO WORKSTATION - DARK STUDIO DESIGN SYSTEM
+   ========================================================================== */
+
+:root {
+  --bg-main: #070913;
+  --bg-topbar: #0d1021;
+  --bg-sidebar: rgba(13, 16, 33, 0.88);
+  --bg-card: rgba(21, 26, 50, 0.75);
+  --bg-input: rgba(15, 19, 38, 0.9);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-active: rgba(99, 102, 241, 0.5);
+
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+
+  --primary: #6366f1;
+  --primary-glow: rgba(99, 102, 241, 0.5);
+  --secondary: #8b5cf6;
+  --accent-cyan: #06b6d4;
+  --accent-rose: #f43f5e;
+  --accent-amber: #f59e0b;
+  --accent-emerald: #10b981;
+
+  --key-white-bg: linear-gradient(180deg, #ffffff 0%, #f1f5f9 85%, #cbd5e1 100%);
+  --key-white-text: #334155;
+  --key-black-bg: linear-gradient(180deg, #334155 0%, #0f172a 70%, #020617 100%);
+  --key-black-text: #f8fafc;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+}
+
+.studio-app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-image: 
+    radial-gradient(at 10% 10%, rgba(99, 102, 241, 0.08) 0px, transparent 50%),
+    radial-gradient(at 90% 90%, rgba(139, 92, 246, 0.08) 0px, transparent 50%);
+}
+
+/* ==========================================================================
+   TOP BAR HEADER
+   ========================================================================== */
+.top-bar {
+  height: 56px;
+  background: var(--bg-topbar);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+}
+
+.top-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.studio-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-logo {
+  font-size: 1.6rem;
+  filter: drop-shadow(0 0 8px var(--primary-glow));
+}
+
+.brand-titles {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-main {
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  background: linear-gradient(135deg, #ffffff 0%, var(--primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brand-sub {
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+}
+
+.status-pill {
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-amber);
+  box-shadow: 0 0 8px var(--accent-amber);
+}
+
+.status-pill.active .status-dot {
+  background: var(--accent-emerald);
+  box-shadow: 0 0 8px var(--accent-emerald);
+}
+
+/* Peak dB Meter */
+.peak-meter-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 4px 10px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.72rem;
+}
+
+.meter-label { color: var(--text-muted); font-weight: 700; }
+
+.meter-track {
+  width: 80px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.meter-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981 0%, #f59e0b 80%, #f43f5e 100%);
+  transition: width 0.05s ease-out;
+}
+
+.meter-val { color: var(--accent-cyan); font-weight: 700; }
+
+.top-center-badges {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.info-badge {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.badge-lbl { color: var(--text-muted); }
+
+.recording-badge {
+  background: rgba(244, 63, 94, 0.2);
+  border-color: var(--accent-rose);
+  color: var(--accent-rose);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.rec-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-rose);
+  animation: pulseRec 1s infinite alternate;
+}
+
+@keyframes pulseRec {
+  0% { opacity: 0.4; }
+  100% { opacity: 1.0; }
+}
+
+.top-right-tools {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.top-btn {
+  background: var(--bg-input);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.top-btn:hover { border-color: var(--primary); color: var(--primary); }
+
+.icon-btn {
+  background: var(--bg-input);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   WORKSTATION BODY & SIDEBARS
+   ========================================================================== */
+.workstation-body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 310px 1fr 310px;
+  height: calc(100vh - 126px);
+  overflow: hidden;
+}
+
+.sidebar {
+  background: var(--bg-sidebar);
+  backdrop-filter: blur(16px);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.right-panel {
+  border-right: none;
+  border-left: 1px solid var(--border-color);
+}
+
+.panel-header {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.panel-title { display: flex; align-items: center; gap: 8px; }
+.panel-title h3 { font-size: 0.9rem; font-weight: 800; letter-spacing: 1px; }
+
+.panel-tag {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--accent-cyan);
+  background: rgba(6, 182, 212, 0.12);
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(6, 182, 212, 0.3);
+}
+
+.panel-content {
+  flex: 1;
+  padding: 16px 18px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Category Filter Tabs */
+.filter-tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--bg-input);
+  padding: 3px;
+  border-radius: 8px;
+}
+
+.filter-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  padding: 4px 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn.active {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input-row {
+  display: flex;
+  gap: 10px;
+}
+.flex-1 { flex: 1; }
+
+.input-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+}
+
+.label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.val-display {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+}
+
+.select-wrapper { position: relative; width: 100%; }
+
+.studio-select {
+  width: 100%;
+  background: var(--bg-input);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.select-wrapper::after {
+  content: '▼';
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.studio-slider {
+  width: 100%;
+  accent-color: var(--primary);
+  height: 6px;
+  border-radius: 3px;
+  background: var(--bg-input);
+  cursor: pointer;
+}
+
+.slider-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mini-icon-btn {
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.octave-button-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.oct-btn {
+  background: var(--bg-input);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  width: 32px;
+  height: 32px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.oct-badge {
+  flex: 1;
+  text-align: center;
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 6px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+}
+
+.studio-toggle-btn {
+  width: 100%;
+  background: var(--bg-input);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.studio-toggle-btn.active {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow: 0 4px 12px var(--primary-glow);
+}
+
+/* Song Card */
+.song-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.song-card-header { display: flex; align-items: center; justify-content: space-between; }
+.song-card-header h4 { font-size: 0.88rem; font-weight: 700; }
+.song-artist { font-size: 0.75rem; color: var(--text-muted); }
+
+.diff-badge { font-size: 0.65rem; font-weight: 800; padding: 2px 6px; border-radius: 4px; }
+.diff-easy { background: rgba(16, 185, 129, 0.2); color: var(--accent-emerald); }
+.diff-medium { background: rgba(245, 158, 11, 0.2); color: var(--accent-amber); }
+.diff-hard { background: rgba(244, 63, 94, 0.2); color: var(--accent-rose); }
+
+/* Guide Player Box */
+.guide-controls-box { display: flex; flex-direction: column; gap: 8px; }
+.guide-btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+.studio-btn {
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.primary-btn { background: linear-gradient(135deg, var(--primary) 0%, #4f46e5 100%); color: #fff; }
+.secondary-btn { background: var(--bg-input); border-color: var(--border-color); color: var(--text-main); }
+.danger-btn { background: linear-gradient(135deg, var(--accent-rose) 0%, #e11d48 100%); color: #fff; }
+
+.studio-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.guide-options-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.speed-option { display: flex; align-items: center; gap: 4px; font-size: 0.75rem; color: var(--text-muted); }
+.mini-select { width: auto; padding: 4px 6px; font-size: 0.75rem; }
+.mini-toggle { padding: 5px 10px; font-size: 0.75rem; }
+
+/* Practice Stats Box */
+.practice-stats-box { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.stat-card {
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-label { font-size: 0.65rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; }
+.stat-val { font-family: 'Fira Code', monospace; font-size: 1.1rem; font-weight: 800; }
+.accuracy-val { color: var(--accent-emerald); }
+.wrong-val { color: var(--accent-rose); }
+
+/* Sheet Notes Display */
+.sheet-notes-section { display: flex; flex-direction: column; gap: 6px; }
+.section-header { display: flex; align-items: center; justify-content: space-between; font-size: 0.72rem; font-weight: 800; color: var(--text-muted); }
+.step-counter { font-family: 'Fira Code', monospace; color: var(--accent-cyan); }
+
+.sheet-notes-display {
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 10px;
+  min-height: 100px;
+  max-height: 140px;
+  overflow-y: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-content: flex-start;
+}
+
+.note-chip {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 3px 6px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.note-chip.active {
+  background: var(--accent-amber);
+  color: #000;
+  font-weight: 800;
+  box-shadow: 0 0 8px var(--accent-amber);
+}
+
+.note-chip.passed { opacity: 0.4; }
+
+/* Saved Recordings List */
+.saved-recs-section { display: flex; flex-direction: column; gap: 6px; }
+.count-badge { font-family: 'Fira Code', monospace; color: var(--accent-cyan); }
+.saved-recs-list { display: flex; flex-direction: column; gap: 6px; }
+.empty-msg { font-size: 0.72rem; color: var(--text-dim); }
+
+.rec-item {
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rec-info { display: flex; flex-direction: column; }
+.rec-name { font-size: 0.78rem; font-weight: 700; }
+.rec-date { font-size: 0.65rem; color: var(--text-muted); }
+.rec-actions { display: flex; gap: 4px; }
+.rec-btn { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-color); border-radius: 4px; padding: 2px 6px; cursor: pointer; color: var(--text-main); }
+.rec-btn.play { color: var(--accent-emerald); }
+.rec-btn.delete { color: var(--accent-rose); }
+
+/* ==========================================================================
+   ROTARY KNOBS DSP RACK
+   ========================================================================== */
+.dsp-knobs-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section-title { font-size: 0.72rem; font-weight: 800; letter-spacing: 1px; color: var(--text-dim); }
+
+.knob-row { display: flex; justify-content: space-around; align-items: center; }
+
+.knob-control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.knob-label { font-size: 0.62rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; }
+
+.knob-outer {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #1e2544 0%, #0d1124 100%);
+  border: 2px solid #2b345a;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5), inset 0 1px 2px rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: ns-resize;
+}
+
+.knob-dial {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: relative;
+  transition: transform 0.05s ease-out;
+}
+
+.knob-indicator {
+  width: 3px;
+  height: 12px;
+  background: var(--accent-cyan);
+  box-shadow: 0 0 6px var(--accent-cyan);
+  border-radius: 2px;
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.knob-value { font-family: 'Fira Code', monospace; font-size: 0.7rem; font-weight: 700; color: var(--accent-cyan); }
+
+/* ==========================================================================
+   CENTER DECK (PIANO ROLL & 3D PIANO KEYBOARD)
+   ========================================================================== */
+.center-deck {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-main);
+}
+
+.visualizer-deck {
+  flex: 1;
+  padding: 12px 16px 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+  min-height: 140px;
+}
+
+.viz-header { display: flex; align-items: center; justify-content: space-between; }
+.viz-label { font-size: 0.7rem; font-weight: 800; letter-spacing: 1px; color: var(--text-dim); }
+.viz-toggles { display: flex; gap: 4px; }
+
+.viz-btn {
+  background: var(--bg-input);
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.viz-btn.active { background: rgba(99, 102, 241, 0.25); color: var(--text-main); border-color: var(--primary); }
+
+.visualizer-canvas {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background: rgba(6, 8, 18, 0.95);
+  border: 1px solid var(--border-color);
+}
+
+.piano-stage {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 14px;
+}
+
+.piano-keyboard-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  padding: 6px 0;
+}
+
+.piano-keyboard {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  background: linear-gradient(180deg, #12162a 0%, #060814 100%);
+  border: 4px solid #232a4a;
+  border-radius: 16px;
+  padding: 20px 18px 30px;
+  box-shadow: 
+    inset 0 4px 20px rgba(0,0,0,0.9),
+    0 20px 60px rgba(0,0,0,0.7),
+    0 0 40px rgba(99, 102, 241, 0.15);
+  min-width: max-content;
+}
+
+/* 3D Keys */
+.key.white-key {
+  position: relative;
+  width: 57px;
+  height: 220px;
+  background: var(--key-white-bg);
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  margin-right: 3px;
+  cursor: pointer;
+  box-shadow: 
+    0 10px 14px rgba(0, 0, 0, 0.35),
+    inset 0 -6px 8px rgba(0, 0, 0, 0.15),
+    inset 0 2px 4px rgba(255, 255, 255, 0.9);
+  transition: transform 0.04s ease, background 0.04s ease, box-shadow 0.04s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 12px;
+  z-index: 1;
+}
+
+.key.white-key.active {
+  transform: translateY(6px) scaleY(0.985);
+  background: linear-gradient(180deg, #e0e7ff 0%, #818cf8 60%, #6366f1 100%) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 0 30px var(--primary-glow) !important;
+}
+
+.key.white-key.guided {
+  background: linear-gradient(180deg, #fef3c7 0%, #fde047 70%, #f59e0b 100%) !important;
+  box-shadow: 0 0 25px var(--accent-amber) !important;
+}
+
+.key.white-key.scale-dim { opacity: 0.5; }
+
+.key.black-key {
+  position: absolute;
+  width: 36px;
+  height: 136px;
+  background: var(--key-black-bg);
+  border: 1px solid #1e293b;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  cursor: pointer;
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.75), inset 0 -4px 6px rgba(255, 255, 255, 0.15);
+  transition: transform 0.04s ease, background 0.04s ease, box-shadow 0.04s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 8px;
+  z-index: 10;
+}
+
+.key.black-key.active {
+  transform: translateY(4px) scaleY(0.98);
+  background: linear-gradient(180deg, #581c87 0%, #8b5cf6 80%, #a855f7 100%) !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.8), 0 0 30px rgba(139, 92, 246, 0.9) !important;
+}
+
+.key.black-key.guided {
+  background: linear-gradient(180deg, #78350f 0%, #d97706 70%, #f59e0b 100%) !important;
+  box-shadow: 0 0 25px var(--accent-amber) !important;
+}
+
+.key.black-key.scale-dim { opacity: 0.4; }
+
+.key-label {
+  font-family: 'Fira Code', monospace;
+  font-weight: 700;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  padding: 2px 5px;
+  pointer-events: none;
+}
+
+.white-key .key-label { color: var(--key-white-text); background: rgba(241, 245, 249, 0.9); border: 1px solid rgba(148, 163, 184, 0.5); }
+.black-key .key-label { color: var(--key-black-text); background: rgba(15, 23, 42, 0.85); font-size: 0.72rem; }
+
+.key-note { font-size: 0.62rem; font-weight: 600; color: var(--text-muted); margin-top: 2px; pointer-events: none; }
+
+/* ==========================================================================
+   BOTTOM TIMELINE & DAW TRANSPORT BAR
+   ========================================================================== */
+.bottom-timeline-bar {
+  height: 70px;
+  background: var(--bg-topbar);
+  border-top: 1px solid var(--border-color);
+  padding: 6px 18px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 100;
+}
+
+.transport-row { display: flex; align-items: center; gap: 8px; }
+
+.transport-btn {
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.transport-btn.record { color: var(--accent-rose); }
+.transport-btn.recording { background: var(--accent-rose); color: #fff; animation: pulseRec 1s infinite alternate; }
+.transport-btn.play { color: var(--accent-emerald); }
+.transport-btn.pause { color: var(--accent-amber); }
+.transport-btn.stop { color: var(--text-muted); }
+.transport-btn.save { color: var(--accent-cyan); }
+
+.transport-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+.transport-divider { width: 1px; height: 24px; background: var(--border-color); }
+
+.metronome-box { display: flex; align-items: center; gap: 10px; }
+
+.metronome-toggle {
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.metronome-toggle.active { background: rgba(99, 102, 241, 0.2); border-color: var(--primary); color: var(--text-main); }
+
+.bpm-box { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; color: var(--text-muted); font-weight: 700; }
+.bpm-input { width: 54px; background: var(--bg-input); border: 1px solid var(--border-color); border-radius: 4px; color: var(--accent-cyan); font-family: 'Fira Code', monospace; font-size: 0.8rem; padding: 3px 6px; text-align: center; }
+
+/* MIDI Timeline Grid */
+.timeline-track-container {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: rgba(7, 9, 19, 0.8);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.timeline-ruler {
+  height: 16px;
+  background: rgba(15, 19, 38, 0.9);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.65rem;
+  color: var(--text-dim);
+}
+
+.timeline-canvas-box {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.midi-note-block {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  background: var(--primary);
+  border-radius: 2px;
+  box-shadow: 0 0 6px var(--primary-glow);
+}
+
+.playhead-cursor {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--accent-rose);
+  box-shadow: 0 0 8px var(--accent-rose);
+  z-index: 10;
+}
+
+/* ==========================================================================
+   KEYMAP MODAL
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.keymap-modal {
+  background: var(--bg-topbar);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  width: 540px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+}
+
+.modal-header { padding: 16px 20px; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; }
+.modal-header h3 { font-size: 1rem; font-weight: 800; }
+.close-btn { background: transparent; border: none; color: var(--text-muted); font-size: 1.2rem; cursor: pointer; }
+
+.modal-body { padding: 18px 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; }
+.modal-desc { font-size: 0.8rem; color: var(--text-muted); }
+
+.keymap-grid { display: flex; flex-direction: column; gap: 6px; }
+.keymap-row { display: flex; align-items: center; justify-content: space-between; background: var(--bg-input); border: 1px solid var(--border-color); border-radius: 8px; padding: 6px 12px; }
+.black-note-row { background: rgba(139, 92, 246, 0.08); }
+
+.note-name-badge { font-family: 'Fira Code', monospace; font-weight: 800; color: var(--accent-cyan); font-size: 0.85rem; }
+.midi-num { font-size: 0.72rem; color: var(--text-dim); }
+
+.keybind-input-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-main);
+  cursor: pointer;
+}
+
+.keybind-input-btn.listening { background: var(--accent-amber); color: #000; animation: pulseRec 0.8s infinite alternate; }
+
+.modal-footer { padding: 14px 20px; border-top: 1px solid var(--border-color); display: flex; justify-content: flex-end; gap: 10px; }
